@@ -495,6 +495,11 @@
                     "when": "view == extension.vsKubernetesExplorer && viewItem =~ /vsKubernetes\\.resource\\.pod/i"
                 },
                 {
+                    "command": "extension.vsKubernetesCopyPodAddress",
+                    "group": "2@7",
+                    "when": "view == extension.vsKubernetesExplorer && viewItem =~ /vsKubernetes\\.resource\\.pod/i"
+                },
+                {
                     "command": "extension.vsKubernetesPortForward",
                     "group": "2@6",
                     "when": "view == extension.vsKubernetesExplorer && viewItem =~ /vsKubernetes\\.resource\\.pod/i"
@@ -851,6 +856,11 @@
             {
                 "command": "extension.vsMinikubeStatus",
                 "title": "Minikube status",
+                "category": "Kubernetes"
+            },
+            {
+                "command": "extension.vsKubernetesCopyPodAddress",
+                "title": "Copy Pod Address",
                 "category": "Kubernetes"
             },
             {

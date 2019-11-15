@@ -208,6 +208,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<APIBro
             }
         }),
         registerCommand('extension.vsKubernetesCopy', copyKubernetes),
+        registerCommand('extension.vsKubernetesCopyPodAddress', copyPodAddress),
         registerCommand('extension.vsKubernetesPortForward', (explorerNode: ClusterExplorerResourceNode) => { portForwardKubernetes(kubectl, explorerNode); }),
         registerCommand('extension.vsKubernetesLoadConfigMapData', configmaps.loadConfigMapData),
         registerCommand('extension.vsKubernetesDeleteFile', (explorerNode: ClusterExplorerConfigurationValueNode) => { deleteKubernetesConfigFile(kubectl, explorerNode, treeProvider); }),
@@ -1887,6 +1888,17 @@ async function deleteContextKubernetes(explorerNode: ClusterExplorerNode) {
     if (await kubectlUtils.deleteCluster(kubectl, contextObj)) {
         refreshExplorer();
     }
+}
+
+async function copyPodAddress(explorerNode: ClusterExplorerNode) {
+    const address = copiablePodAddress(explorerNode);
+    if (address) {
+        clipboard.write(address);
+    }
+}
+
+function copiablePodAddress(explorerNode: ClusterExplorerNode): string | undefined {
+    return "127.0.0.1";
 }
 
 async function copyKubernetes(explorerNode: ClusterExplorerNode) {
